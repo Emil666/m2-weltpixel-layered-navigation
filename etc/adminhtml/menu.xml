@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+                id="WeltPixel_LayeredNavigation::LayeredNavigation_Label"
+                title="Layered Navigation"
+                module="WeltPixel_LayeredNavigation"
+                sortOrder="390"
+                parent="WeltPixel_Backend::WeltPixel"
+                resource="WeltPixel_LayeredNavigation::LayeredNavigation_Label"
+        />
+        <add
+                id="WeltPixel_LayeredNavigation::LayeredNavigation_General"
+                title="Layered Navigation Settings"
+                module="WeltPixel_LayeredNavigation"
+                action="adminhtml/system_config/edit/section/weltpixel_layerednavigation/"
+                sortOrder="10"
+                parent="WeltPixel_LayeredNavigation::LayeredNavigation_Label"
+                resource="WeltPixel_LayeredNavigation::LayeredNavigation_General"
+        />
+    </menu>
+</config>

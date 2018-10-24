@@ -1,0 +1,98 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+
+<?php $attributeId = $block->getAttributeId()?>
+<?php $isMulti = $block->getIsMultiselect()?>
+<?php $canShowQty = (is_null($block->getShowQty())) ? $this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer() : $block->getShowQty();?>
+<ol class="items" id="<?= $attributeId ?>_items" >
+    <?php foreach ($filterItems as $filterItem): ?>
+    <?php $requestVar = $filterItem->getFilter()->getRequestVar();?>
+    <?php $filterItemVal = is_array($filterItem->getValue()) ? implode('-', $filterItem->getValue()) : $filterItem->getValue()?>
+    <?php $dataOptPath = ($requestVar != 'cat') ? $filterItem->getFilter()->getAttributeModel()->getAttributeCode() . '='. $filterItemVal : 'cat='.$filterItemVal;?>
+        <li class="item"  style="display: none" id="wp_ln_attr_<?= $attributeId ?>_<?= /* @escapeNotVerified */ is_array($filterItem->getValue()) ? implode('-', $filterItem->getValue()) : $filterItem->getValue() ?>">
+            <?php if ($filterItem->getCount() > 0): $filter = $filterItem->getFilter();?>
+                <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>"
+                   data-opt-path="<?= /* @escapeNotVerified */ $dataOptPath ?>"
+                    data-is-multi="<?= $isMulti?>">
+                    <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
+                    <?php if ($canShowQty): ?>
+                        <span class="count"><?= /* @escapeNotVerified */ $filterItem->getCount() ?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1):?> <?= /* @escapeNotVerified */ __('item') ?><?php else:?> <?= /* @escapeNotVerified */ __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                </a>
+            <?php else:?>
+                <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
+                <?php if ($canShowQty): ?>
+                    <span class="count"><?= /* @escapeNotVerified */ $filterItem->getCount() ?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1):?><?= /* @escapeNotVerified */ __('item') ?><?php else:?><?= /* @escapeNotVerified */ __('items') ?><?php endif;?></span></span>
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+    <div class="wp-ln-actions">
+        <b id="loadMore_<?=$attributeId?>" class="wp-ln-action wp-ln-load-more icon-line-arrow-down"></b>
+        <b id="showLess_<?=$attributeId?>"  class="wp-ln-action wp-ln-show-less icon-line-arrow-up"></b>
+    </div>
+</ol>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+        $(document).ready(function(){
+            var visibleItems = "<?= $block->getVisibleItems()?>",
+                visibleItemsStep = "<?= $block->getVisibleItemsStep()?>",
+                attrId = "<?= $attributeId?>",
+                elId = attrId + '_items',
+                ulSize = $('#' + elId + ' li').size(),
+                loadMoreId = '#loadMore_' + attrId,
+                showLessId = '#showLess_' + attrId,
+                x = parseInt(visibleItems),
+                initialX = x,
+                xStep = parseInt(visibleItemsStep);
+            if(visibleItems > 0 && visibleItems.length > 0 && visibleItems < 99 && ulSize > visibleItems) {
+                 $(loadMoreId).show();
+                 $("#"+ elId + " li:lt(" + visibleItems + ")").show();
+                 $(showLessId).hide();
+            } else {
+                $("#"+ elId + " li").show();
+                $(loadMoreId).hide();
+            }
+
+            $(loadMoreId).click(function () {
+                if(xStep == 99) {
+                    $('#' + elId + ' li:lt(' + ulSize + ')').show();
+                    $(this).hide();
+                    $(showLessId).show();
+                } else {
+                    x = ( x + xStep <= ulSize) ? x + xStep : ulSize;
+                    $('#' + elId + ' li:lt(' + x + ')').show();
+                    if(ulSize == x){
+                        $(this).hide();
+                        $(showLessId).show();
+                    }else{
+                        $(showLessId).show();
+                    }
+                }
+            });
+
+            $(showLessId).click(function () {
+                if(xStep == 99) {
+                    $('#' + elId + ' li').not(':lt(' + xStep + ')').hide();
+                    $(this).hide();
+                    $(loadMoreId).show();
+                } else {
+                    x = ( x - xStep < 0 || x == ulSize) ? initialX : x - xStep;
+                    $('#' + elId + ' li').not(':lt(' + x + ')').hide();
+                    if(x <= visibleItems){
+                        $(this).hide();
+                        $(loadMoreId).show();
+                    }else{
+                        $(loadMoreId).show();
+                    }
+
+                }
+            });
+
+        })
+
+    });
+</script>

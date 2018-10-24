@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="weltpixel_layerednavigation" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="210"
+                 translate="label">
+            <label>Layered Navigation</label>
+            <tab>weltpixel</tab>
+            <resource>WeltPixel_LayeredNavigation::LayeredNavigation</resource>
+
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General Settings</label>
+                <field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label"
+                       type="select">
+                    <label>Enable Layered Navigation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable/Disable WeltPixel Layered Navigation.</comment>
+                </field>
+
+                <field id="ajax" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30"
+                       translate="label" type="select">
+                    <label>Enable Ajax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable/Disable Ajax Layered Navigation.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="sidebar" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+                <label>Sidebar Settings</label>
+                <field id="style" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Sidebar Style</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Slide-In Navigation & Slide-Down Navigation”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="compare_block" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show Compare Products block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show/Hide Compare Products block from sidebar.</comment>
+                    <depends>
+                        <field id="sb_style">0</field>
+                    </depends>
+                </field>
+
+                <field id="wishlist_block" translate="label" type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show Wish List block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show/Hide Wish List block from sidebar.</comment>
+                </field>
+
+                <field id="category_block" translate="label" type="select" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show Category Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show/Hide Category Filter section from Layered Navigation sidebar.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="filter_button" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Filter Button</label>
+                    <source_model>WeltPixel\LayeredNavigation\Model\Config\Source\FilterButton</source_model>
+                    <comment>Select the preferred style for the Layered Navigation filter button.</comment>
+                </field>
+
+                <field id="price_filter" translate="label" type="select" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Price Filter</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Price Filter”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="price_filter_input" translate="label" type="select" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show Price Filter With Input</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Show Price Filter With Input”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="auto_close" translate="label" type="select" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Auto Close Sidebar</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Auto Close Sidebar”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="rating_filter" translate="label" type="select" sortOrder="90" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Rating Filter</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Rating Filter”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="rating_filter_option" translate="label" type="select" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Rating Filter Display Options</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Rating Filter Display Options”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="rating_filter_position" translate="label" type="select" sortOrder="110" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Rating Filter Position</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Rating Filter Position”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="rating_filter_ms" translate="label" type="select" sortOrder="120" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Rating Filter Multiselect</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Rating Filter Multiselect”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <field id="rating_filter_counter" translate="label" type="select" sortOrder="130" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show Rating Filter Counter</label>
+                    <frontend_model>WeltPixel\LayeredNavigation\Block\System\Config\Form\Field\Disable</frontend_model>
+                    <comment><![CDATA[Default magento navigation enabled. <br/>
+                                <strong>“Show Rating Filter Counter”</strong> only available in PRO version of this extension. <br>
+                                <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-layered-navigation.html">Upgrade to Pro version</a> to enable this functionality.
+                            ]]>
+                    </comment>
+
+                </field>
+
+                <comment>
+                    <![CDATA[<p>For more settings on attribute level, go to
+                    <strong>Stores -> Attributes -> Product -> [select desired attribute from grid] ->
+                    Storefront Properties -> WeltPixel Layered Navigation Properties</strong>
+                     section.
+                    </p>
+                    ]]>
+                </comment>
+
+            </group>
+
+        </section>
+    </system>
+</config>

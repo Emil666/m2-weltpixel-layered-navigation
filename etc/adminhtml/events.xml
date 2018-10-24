@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="product_attribute_form_build_front_tab">
+        <observer name="wp_layeredNavigation" instance="WeltPixel\LayeredNavigation\Observer\Edit\Tab\Front\WpProductAttributeFormBuildFrontTabObserver" />
+    </event>
+    <event name="catalog_entity_attribute_save_after">
+        <observer name="wp_layeredNavigation_attribute_options" instance="WeltPixel\LayeredNavigation\Observer\WpCatalogAttributeSaveAfterObserver" />
+    </event>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="WeltPixel_LayeredNavigation" setup_version="1.0.2">
+        <sequence>
+            <module name="WeltPixel_Backend"/>
+        </sequence>
+    </module>
+</config>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="wp-ln-filter-page"/>
+        <referenceBlock name="catalog.leftnav">
+            <action method="setTemplate" ifconfig="weltpixel_layerednavigation/general/enable">
+                <argument name="template" xsi:type="string">WeltPixel_LayeredNavigation::layer/view.phtml</argument>
+            </action>
+            <container name="layer.additional.info" as="layer_additional_info"/>
+            <container name="layer.content.before" as="layer_content_before"/>
+        </referenceBlock>
+        <referenceBlock name="catalog.navigation.renderer">
+            <action method="setTemplate" ifconfig="weltpixel_layerednavigation/general/enable">
+                <argument name="template" xsi:type="string">WeltPixel_LayeredNavigation::layer/filter.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="layer.category.products" template="WeltPixel_LayeredNavigation::products.phtml" />
+        </referenceContainer>
+
+        <move element="category.products" destination="layer.category.products"/>
+        <referenceContainer name="before.body.end">
+            <block
+                    ifconfig="weltpixel_layerednavigation/general/enable"
+                    class="WeltPixel\LayeredNavigation\Block\LayeredNavigationAdd"
+                    name="layerednavigationadd"
+                    template="WeltPixel_LayeredNavigation::layerednavigationadd.phtml"
+            />
+        </referenceContainer>
+    </body>
+</page>

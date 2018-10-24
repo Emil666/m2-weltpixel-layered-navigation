@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <weltpixel_layerednavigation>
+            <general>
+                <enable>1</enable>
+                <ajax>1</ajax>
+            </general>
+            <sidebar>
+                <sb_style>0</sb_style>
+                <category_block>1</category_block>
+                <compare_block>1</compare_block>
+                <wishlist_block>1</wishlist_block>
+                <filter_button>1</filter_button>
+            </sidebar>
+            <attribute_display>
+                <filter>0</filter>
+                <multiselect>1</multiselect>
+                <qty>1</qty>
+                <sort>position</sort>
+            </attribute_display>
+        </weltpixel_layerednavigation>
+    </default>
+</config>

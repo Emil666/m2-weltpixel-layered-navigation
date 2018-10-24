@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-products"/>
+
+        <referenceContainer name="sidebar.main">
+            <block class="WeltPixel\LayeredNavigation\Block\Navigation\Search" name="catalogsearch.leftnav" before="-" template="WeltPixel_LayeredNavigation::layer/view.phtml">
+                <block class="WeltPixel\LayeredNavigation\Block\Navigation\State" name="catalogsearch.navigation.state" as="state" />
+                <block class="WeltPixel\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalogsearch.navigation.renderer" as="renderer" template="WeltPixel_LayeredNavigation::layer/filter.phtml"/>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="wp.layer.search.result" template="WeltPixel_LayeredNavigation::search_products.phtml" />
+        </referenceContainer>
+        <move element="search.result" destination="wp.layer.search.result"/>
+
+        <referenceContainer name="before.body.end">
+            <block
+                    ifconfig="weltpixel_layerednavigation/general/enable"
+                    class="WeltPixel\LayeredNavigation\Block\LayeredNavigationAdd"
+                    name="layerednavigationadd"
+                    template="WeltPixel_LayeredNavigation::layerednavigationadd.phtml"
+            />
+        </referenceContainer>
+
+    </body>
+</page>
+
